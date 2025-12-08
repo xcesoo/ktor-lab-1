@@ -1,4 +1,3 @@
-// Функція 1: Отримання JSON (стара)
 async function getData() {
     try {
         const res = await fetch('/api/hello');
@@ -11,9 +10,8 @@ async function getData() {
     }
 }
 
-// Функція 2: Відправка імені (НОВА)
+
 async function sendName() {
-    // Беремо текст, який ввів користувач
     const name = document.getElementById('nameInput').value;
 
     if (!name) {
@@ -22,12 +20,27 @@ async function sendName() {
     }
 
     try {
-        // Робимо запит на сервер, додаючи ім'я прямо в адресу
         const res = await fetch('/api/greet/' + name);
         const text = await res.text();
 
-        // Показуємо відповідь
         document.getElementById('textResponse').innerText = text;
+    } catch (e) {
+        console.error(e);
+    }
+}
+async function calculate() {
+    const a = document.getElementById('numA').value;
+    const b = document.getElementById('numB').value;
+
+    if (!a || !b) {
+        alert("Введіть обидва числа!");
+        return;
+    }
+
+    try {
+        const res = await fetch(`/api/calc?a=${a}&b=${b}`);
+        const text = await res.text();
+        document.getElementById('calcResponse').innerText = text;
     } catch (e) {
         console.error(e);
     }
