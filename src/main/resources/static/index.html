@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Ktor Lab Advanced</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; padding: 40px; text-align: center; background-color: #f4f4f9; }
+        .card { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); max-width: 500px; margin: 0 auto; }
+        input { padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 5px; width: 60%; }
+        button { padding: 10px 20px; font-size: 16px; cursor: pointer; background-color: #6200EE; color: white; border: none; border-radius: 5px; margin-left: 10px;}
+        button:hover { background-color: #3700b3; }
+        #responseArea { margin-top: 20px; font-weight: bold; color: #333; min-height: 20px;}
+        img { margin-top: 20px; max-width: 150px; border-radius: 50%; }
+    </style>
+</head>
+<body>
+<div class="card">
+    <img src="logo.jpeg" alt="Logo">
+
+    <h1>Ktor Лабораторна</h1>
+    <p>Демонстрація роботи з API та параметрами.</p>
+
+    <hr>
+
+    <p>1. Перевірка зв'язку (JSON):</p>
+    <button onclick="getData()">Ping Server</button>
+    <div id="jsonResponse" style="color: gray; font-size: 0.9em; margin-top: 10px;"></div>
+
+    <hr>
+
+    <p>2. Персональне привітання:</p>
+    <div>
+        <input type="text" id="nameInput" placeholder="Введи своє ім'я">
+        <button onclick="sendName()">Привітатися</button>
+    </div>
+    <div id="textResponse" style="color: #6200EE; margin-top: 15px;"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
