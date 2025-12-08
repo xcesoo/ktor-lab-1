@@ -45,3 +45,24 @@ async function calculate() {
         console.error(e);
     }
 }
+
+async function loadUsers() {
+    const list = document.getElementById('usersList');
+    list.innerHTML = "Завантаження...";
+
+    try {
+        const res = await fetch('/api/users');
+        const users = await res.json();
+
+        list.innerHTML = "";
+
+        users.forEach(user => {
+            const li = document.createElement('li');
+            li.innerText = `${user.name} (${user.role}) — ${user.email}`;
+            list.appendChild(li);
+        });
+    } catch (e) {
+        list.innerText = "Помилка завантаження. Перевір консоль.";
+        console.error(e);
+    }
+}
