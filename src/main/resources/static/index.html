@@ -11,6 +11,59 @@
         button:hover { background-color: #3700b3; }
         #responseArea { margin-top: 20px; font-weight: bold; color: #333; min-height: 20px;}
         img { margin-top: 20px; max-width: 150px; border-radius: 50%; }
+                .users-grid {
+            display: grid;
+            /* Автоматична сітка: картки шириною мінімум 250px */
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .user-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05); /* Легка тінь */
+            border: 1px solid #eee;
+            text-align: left;
+            transition: transform 0.2s;
+        }
+
+        .user-card:hover {
+            transform: translateY(-5px); /* Ефект підняття при наведенні */
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        .user-name {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .user-email {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .user-role {
+            display: inline-block;
+            background-color: #e3f2fd;
+            color: #1565c0;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .role-admin { background-color: #fce4ec; color: #c2185b; }
+        .role-driver { background-color: #e8f5e9; color: #2e7d32; }
     </style>
 </head>
 <body>
@@ -46,7 +99,8 @@
     <hr>
     <p>4. Реальна База Даних (SQLite):</p>
     <button onclick="loadUsers()" style="background-color: #FF5722;">Завантажити юзерів</button>
-    <ul id="usersList" style="text-align: left; margin-top: 15px;"></ul>
+    <div id="usersGrid" class="users-grid">
+    </div>
 </div>
 
 

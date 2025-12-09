@@ -47,22 +47,40 @@ async function calculate() {
 }
 
 async function loadUsers() {
-    const list = document.getElementById('usersList');
-    list.innerHTML = "Завантаження...";
+    // Зверни увагу: ми шукаємо usersGrid, а не usersList
+    const grid = document.getElementById('usersGrid');
+
+    // Показуємо спіннер або текст завантаження
+    grid.innerHTML = '<div style="text-align:center; width:100%;">Завантаження карток...</div>';
 
     try {
         const res = await fetch('/api/users');
         const users = await res.json();
 
-        list.innerHTML = "";
+        grid.innerHTML = ""; // Очищаємо контейнер
 
         users.forEach(user => {
-            const li = document.createElement('li');
-            li.innerText = `${user.name} (${user.role}) — ${user.email}`;
-            list.appendChild(li);
+            // Створюємо елемент картки
+            const card = document.createElement('div');
+            card.className = 'user-card';
+
+            // Визначаємо стиль для ролі (для краси)
+            let roleClass = 'user-role';
+            if (user.role.toLowerCase().includes('admin')) roleClass += ' role-admin';
+            if (user.role.toLowerCase().includes('driver')) roleClass += ' role-driver';
+
+            // Заповнюємо HTML всередині картки
+            card.innerHTML = `
+                <div class="user-name">👤 ${user.name}</div>
+                <div class="user-email">✉️ ${user.email}</div>
+                <span class="${roleClass}">${user.role}</span>
+            `;
+
+            grid.appendChild(card);
         });
+
     } catch (e) {
-        list.innerText = "Помилка завантаження. Перевір консоль.";
+        grid.innerHTML = '<div style="color:red; text-align:center;">Помилка завантаження!</div>';
         console.error(e);
     }
 }
